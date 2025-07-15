@@ -7,6 +7,19 @@ def test_formfilling(page):
 
     page.wait_for_timeout(2000)  # Delay to preview login
 
-    assert page.is_visible('div.inventory_list')
+    page.click('#add-to-cart-sauce-labs-fleece-jacket')
+    page.wait_for_timeout(2000)  # Delay to preview login
+    page.click('.shopping_cart_link')  # Fixed selector with underscore
+    page.wait_for_timeout(2000)  # Delay to preview login
 
-    
+    page.click('#checkout')  # Fixed selector with underscore
+    page.wait_for_timeout(2000)  # Delay to preview checkout
+    page.fill('#first-name', 'John')  # Using id="first-name"
+    page.fill('#last-name', 'Doe')    # Using id="last-name"
+    page.fill('#postal-code', '12345')  # Using id="postal-code"
+    page.wait_for_timeout(1000)  # Delay to preview form filling
+    page.click('#continue')  # Using id="continue"
+
+    page.click('#react-burger-menu-btn')  # Open menu
+    page.wait_for_selector('#logout_sidebar_link')  # Wait for logout link to be visible
+    page.click('#logout_sidebar_link')  # Click logout link
