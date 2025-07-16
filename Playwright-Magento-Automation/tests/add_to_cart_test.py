@@ -11,11 +11,16 @@ def test_logout(page):
     page.wait_for_timeout(4000)  # Delay to preview login form
     page.screenshot(path="screenshots/login.png")
     
-    page.click(".product-image-photo")
-    page.wait_for_timeout(2000)  # Delay to preview product image
-    page.screenshot(path="screenshots/ItemSelected.png")
+    page.goto("https://magento.softwaretestingboard.com/push-it-messenger-bag.html")
 
+    page.wait_for_timeout(2000)  # Delay to preview product image
+    page.click('#product-addtocart-button')
+    page.screenshot(path="screenshots/ItemSelected.png")
+    page.click('.action.showcart')
+    page.wait_for_timeout(2000)  # Delay to preview cart
+    page.screenshot(path="screenshots/Cart.png")
     
+
     page.click(".action.switch")
     page.wait_for_selector('.authorization-link')
     page.click('.authorization-link')
